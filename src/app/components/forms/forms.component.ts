@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {GetUnitsService} from "../../services/get-units.service";
 import {ILocation} from "../../types/location.interface";
+import {FilterUnitsService} from "../../services/filter-units.service";
+
 
 @Component({
   selector: 'app-forms',
@@ -17,8 +19,12 @@ export class FormsComponent implements OnInit{
   results:ILocation[] =[]
   filteredResults:ILocation[] =[]
   formGroup!:FormGroup
-  constructor(private formBuilder: FormBuilder, private unitService: GetUnitsService) {
+  constructor(private formBuilder: FormBuilder,
+              private unitService: GetUnitsService,
+              private filterService:FilterUnitsService) {
   }
+
+
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -32,11 +38,8 @@ export class FormsComponent implements OnInit{
   }
 
   onSubmit():void{
-    if(!this.formGroup.value.showClosed){
-      this.filteredResults = this.results.filter(location =>location.opened == true)
-    }else{
-      this.filteredResults = this.results
-    }
+  const {showClosed,hour} = this.formGroup.value
+  this.filteredResults=this.filterService.filter(this.results, showClosed,hour)
   }
 
   onClean():void{

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IUnitsResponse} from "../types/units-response.interface";
@@ -8,7 +8,7 @@ import {IUnitsResponse} from "../types/units-response.interface";
 })
 export class GetUnitsService {
   readonly api = "https://test-frontend-developer.s3.amazonaws.com/data/locations.json"
-  constructor(private httpClient:HttpClient) { }
+  httpClient = inject(HttpClient)
 
   getAllUnites(): Observable<IUnitsResponse>{
     return this.httpClient.get<IUnitsResponse>(this.api)
