@@ -31,15 +31,16 @@ export class FormsComponent implements OnInit{
       hour:'',
       showClosed:true
     })
-    this.unitService.getAllUnites().subscribe(data=>{
-      this.results = data.locations
-      this.filteredResults = data.locations
+    this.unitService.getAllUnits().subscribe(data=>{
+      this.results = data
+      this.filteredResults = data
     })
   }
 
   onSubmit():void{
   const {showClosed,hour} = this.formGroup.value
   this.filteredResults=this.filterService.filter(this.results, showClosed,hour)
+    this.unitService.setFilteredUnits(this.filteredResults)
   }
 
   onClean():void{
