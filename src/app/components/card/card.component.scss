@@ -2,16 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  padding: 8px;
+  justify-content: flex-start;
+  padding: 12px;
   border-radius: 8px;
   gap:8px;
-  background: rgba(0,0,0,0.1);
+  background: var(--light-text);
   -webkit-box-shadow: 1px 1px 1px 1px rgba(51,51,51,0.2);
   -moz-box-shadow: 1px 1px 1px 1px rgba(51,51,51,0.2);
   box-shadow: 1px 1px 1px 1px rgba(51,51,51,0.2);
 
-  max-width: 240px;
+  width: 250px;
+  height: 400px;
 }
 
 span{
@@ -52,4 +53,14 @@ li{
 li b{
   font-size: 16px;
   color: var(--dark-grey);
+}
+
+img{
+  height: 50px;
+}
+
+.divider{
+  height: 1px;
+  background: var(--medium-text);
+  width: 100%;
 }

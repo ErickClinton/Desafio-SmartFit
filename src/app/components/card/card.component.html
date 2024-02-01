@@ -3,11 +3,23 @@
     opened:card.opened
   }">{{card.opened ? 'Aberto' : 'Fechado'}}</span>
   <h3>{{card.title}}</h3>
-  <p>{{card.content}}</p>
-  <img/>
-  <img/>
-  <img/>
-  <img/>
+  <p [innerHTML]="card.content"></p>
+  <div class="divider"></div>
+  <ul>
+    @if(card.mask){
+      <img [src]="'assets/images/png/' + card.mask + '-mask.png'" />
+    }
+    @if(card.towel){
+      <img [src]="'assets/images/png/' + card.towel + '-towel.png'" />
+    }
+    @if(card.fountain){
+      <img [src]="'assets/images/png/' + card.fountain + '-fountain.png'" />
+    }
+    @if(card.locker_room){
+      <img [src]="'assets/images/png/' + card.locker_room + '-lockerroom.png'" />
+    }
+  </ul>
+
   <ul>
     @for(schedules of card.schedules; track schedules.weekdays){
     <li >
